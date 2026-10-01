@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#171a19" />
+    <meta name="description" content="용접 기술과 자격증 준비 경험을 나누는 용접마당 커뮤니티 게시판." />
+    <title>용접마당 커뮤니티</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body data-page="community">
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="index.html" aria-label="용접마당 홈">
+          <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="brand-copy"><strong>용접<span>마당</span></strong><small>WELDING COMMUNITY</small></span>
+        </a>
+        <form class="search-form" id="search-form" role="search">
+          <label class="sr-only" for="search-input">게시글 검색</label>
+          <input id="search-input" type="search" placeholder="이 게시판에서 검색해 보세요" />
+          <button type="submit" aria-label="검색"><span aria-hidden="true">⌕</span></button>
+        </form>
+        <a class="header-join" href="index.html">홈으로 <span aria-hidden="true">↗</span></a>
+      </div>
+    </header>
+    <nav class="main-nav" aria-label="주 메뉴">
+      <div class="nav-inner">
+        <a class="nav-link" href="index.html">홈</a>
+        <a class="nav-link" href="community.html?board=welding">용접 커뮤니티</a>
+        <a class="nav-link" href="community.html?board=welding&amp;category=기초·질문">초보자 질문</a>
+        <a class="nav-link" href="community.html?board=certifications">자격증 정보</a>
+        <a class="nav-link" href="index.html#guide">배움 자료</a>
+        <a class="nav-link" href="index.html#safety">안전 가이드</a>
+        <span class="nav-note"><span class="live-dot"></span> 오늘도 안전하게, 한 땀씩</span>
+      </div>
+    </nav>
+
+    <main class="page-shell community-page">
+      <div class="page-breadcrumb"><a href="index.html">홈</a><span aria-hidden="true">/</span><strong id="page-breadcrumb-title">용접 커뮤니티</strong></div>
+      <section class="board-page-hero" aria-labelledby="page-title">
+        <div>
+          <span class="section-kicker" id="page-kicker">WELDING COMMUNITY</span>
+          <h1 id="page-title">용접 커뮤니티</h1>
+          <p id="page-description">기초 질문부터 현장의 경험까지, 서로의 배움을 나눠요.</p>
+        </div>
+        <div class="page-hero-mark" aria-hidden="true"><span>W</span><i>✳</i></div>
+      </section>
+
+      <section class="section-block board-section standalone-board" id="board" aria-labelledby="board-title">
+        <div class="section-heading board-heading">
+          <div><span class="section-kicker" id="board-kicker">COMMUNITY BOARD</span><h2 id="board-title">게시글 <span class="title-count" id="post-count">16</span></h2></div>
+          <button class="button button-dark" id="write-button" type="button"><span aria-hidden="true">＋</span> 글쓰기</button>
+        </div>
+        <div class="board-toolbar">
+          <div class="category-tabs" role="tablist" aria-label="게시글 분류" id="category-tabs"></div>
+          <span class="board-sort">최신글 <span aria-hidden="true">⌄</span></span>
+        </div>
+        <div class="post-list" id="post-list" aria-live="polite"></div>
+        <div class="empty-state" id="empty-state" hidden>검색 결과가 없어요. 다른 검색어로 찾아보세요.</div>
+        <button class="load-more" id="load-more" type="button">게시글 더 보기 <span aria-hidden="true">＋</span></button>
+      </section>
+      <div class="board-page-footer"><span class="live-dot"></span> 서로 존중하는 마음으로 경험과 질문을 나눠주세요.</div>
+    </main>
+
+    <dialog class="compose-dialog" id="compose-dialog" aria-labelledby="dialog-title">
+      <form id="compose-form" method="dialog">
+        <div class="dialog-heading"><div><span class="section-kicker">JOIN THE CONVERSATION</span><h2 id="dialog-title">새 이야기 쓰기</h2></div><button class="dialog-close" type="button" id="close-dialog" aria-label="닫기">×</button></div>
+        <label class="form-label" for="compose-category">분류</label>
+        <select id="compose-category" name="category"><option>기초·질문</option><option>장비·재료</option><option>현장 이야기</option><option>안전</option><option>자격증</option></select>
+        <label class="form-label" for="compose-title">제목</label>
+        <input id="compose-title" name="title" maxlength="80" placeholder="어떤 이야기를 나누고 싶으세요?" required />
+        <label class="form-label" for="compose-content">내용</label>
+        <textarea id="compose-content" name="content" rows="5" maxlength="1000" placeholder="궁금한 점이나 나누고 싶은 경험을 적어주세요." required></textarea>
+        <p class="form-hint">서로 존중하는 마음으로 이야기해요. 안전과 관련된 질문은 작업 환경도 함께 알려주세요.</p>
+        <div class="dialog-actions"><button class="button button-quiet" type="button" id="cancel-compose">취소</button><button class="button button-primary" type="submit">게시하기 <span aria-hidden="true">→</span></button></div>
+      </form>
+    </dialog>
+
+    <dialog class="detail-dialog" id="detail-dialog" aria-labelledby="detail-title">
+      <div class="detail-layout">
+        <div class="dialog-heading detail-heading"><div><span class="section-kicker">COMMUNITY STORY</span><span class="detail-category" id="detail-category"></span></div><button class="dialog-close" type="button" id="close-detail" aria-label="닫기">×</button></div>
+        <h2 id="detail-title" class="detail-title"></h2>
+        <div class="detail-byline"><span id="detail-author"></span><time id="detail-time"></time></div>
+        <div class="detail-body" id="detail-body"></div>
+        <section class="comments-section" aria-labelledby="comments-title">
+          <div class="comments-heading"><h3 id="comments-title">댓글</h3><span id="detail-comment-count">0</span></div>
+          <div class="comments-list" id="comments-list"></div>
+          <form class="comment-form" id="comment-form"><label class="sr-only" for="comment-input">댓글 내용</label><textarea id="comment-input" name="comment" rows="2" maxlength="500" placeholder="따뜻한 댓글을 남겨주세요." required></textarea><button class="button button-primary" type="submit">댓글 등록 <span aria-hidden="true">→</span></button></form>
+        </section>
+      </div>
+    </dialog>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="다크모드 켜기"><span class="theme-icon" aria-hidden="true">☾</span><span class="theme-label">다크모드</span></button>
+    <footer class="mobile-footer">용접마당 · 함께 배우는 용접 커뮤니티</footer>
+  </body>
+</html>
